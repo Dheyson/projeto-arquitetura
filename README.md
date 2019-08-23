@@ -10,8 +10,17 @@ A brief description of your project, what it is used for.
 A quick introduction of the minimal setup you need to get a hello world up &
 running.
 
+### Client
+
 ```shell
-commands here
+npm i ou npm install
+npm run dev
+```
+### Server
+
+```shell
+npm i ou npm install
+npm run serve
 ```
 
 Here you should say what actually happens when you execute the code above.
@@ -31,9 +40,9 @@ Here's a brief intro about what a developer must do in order to start developing
 the project further:
 
 ```shell
-git clone https://github.com/your/your-project.git
+git clone https://github.com/Dheyson/projeto-arquitetura.git
 cd your-project/
-packagemanager install
+npm install
 ```
 
 And state what happens step-by-step. If there is any virtual environment, local server or database feeder needed, explain here.
