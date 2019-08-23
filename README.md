@@ -1,14 +1,14 @@
 ![Logo of the project](./images/logo.sample.png)
 
-# Name of the project &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
+# Resumidos: Arquitetura &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
 > vuejs, nodejs, javascript
 
 Web app para publicação de resumos das disciplinas.
 
 ## Installing / Getting started
 
-A quick introduction of the minimal setup you need to get a hello world up &
-running.
+Uma introdução rápida da configuração mínima que você precisa para obter um olá mundo acima e
+corrida.
 
 ### Client
 
@@ -23,7 +23,7 @@ npm i ou npm install
 npm run serve
 ```
 
-Here you should say what actually happens when you execute the code above.
+Aqui você deve dizer o que realmente acontece quando você executa o código acima.
 
 ## Developing
 
@@ -31,13 +31,16 @@ Here you should say what actually happens when you execute the code above.
 List main libraries, frameworks used including versions (React, Angular etc...)
 
 ### Prerequisites
-What is needed to set up the dev environment. For instance, global dependencies or any other tools. include download links.
+O que é necessário para configurar o ambiente de desenvolvimento. Por exemplo, dependências globais ou quaisquer outras ferramentas. incluir links de download.
 
+- [MongoDb](https://www.mongodb.com/)
+- [Vue Cli](https://cli.vuejs.org/)
+- [NodeJS](https://nodejs.org/en/download/)
 
 ### Setting up Dev
 
-Here's a brief intro about what a developer must do in order to start developing
-the project further:
+Aqui está uma breve introdução sobre o que um desenvolvedor deve fazer para começar a desenvolver
+o projeto ainda:
 
 ```shell
 git clone https://github.com/Dheyson/projeto-arquitetura.git
@@ -45,7 +48,7 @@ cd your-project/
 npm install
 ```
 
-And state what happens step-by-step. If there is any virtual environment, local server or database feeder needed, explain here.
+E diga o que acontece passo a passo. Se houver algum ambiente virtual, servidor local ou alimentador de banco de dados necessário, explique aqui.
 
 ### Building
 
