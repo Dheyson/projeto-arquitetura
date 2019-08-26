@@ -4,7 +4,7 @@
 > vuejs, nodejs, javascript
 
 Web app para publicação de resumos das disciplinas.
-
+![Architecture structure](https://i.stack.imgur.com/fYFze.png)
 ## Installing / Getting started
 
 Uma introdução rápida da configuração mínima que você precisa para obter um olá mundo acima e
