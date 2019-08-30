@@ -2,13 +2,13 @@
   <q-layout view="lHh Lpr lFf">
     <q-header>
       <!--menu superior-->
-      <q-toolbar class="bg-teal-13 text-white">
-        <q-btn flat label="Resumidos" />
+      <q-toolbar class = "bg-teal-13 text-white">
+        <q-btn flat label = "Resumidos" />
         <q-space />
         <q-btn
           flat
-          class="bg-deep-purple-13 text-white q-mx-sm"
-          label="Acesse sua conta"
+          class = "bg-deep-purple-13 text-white q-mx-sm"
+          label = "Acesse sua conta"
           v-on:click="loginDialog = true"
         />
       </q-toolbar>
@@ -139,6 +139,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   data() {
     return {

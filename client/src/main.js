@@ -7,10 +7,10 @@ import VueAxios from 'vue-axios'
 import './registerServiceWorker'
 import './quasar'
 
-
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
+/* eslint-disable no-new */
 new Vue({
   router,
   store,
