@@ -1,0 +1,183 @@
+<template>
+  <q-layout view="lHh Lpr lFf">
+    <q-header>
+      <!--menu superior-->
+      <q-toolbar class="bg-teal-13 text-white">
+        <q-btn flat label="Resumidos" />
+        <q-space />
+        <q-btn
+          flat
+          class="bg-deep-purple-13 text-white q-mx-sm"
+          label="Acesse sua conta"
+          v-on:click="loginDialog = true"
+        />
+      </q-toolbar>
+    </q-header>
+
+    <!--dialog de login-->
+    <q-dialog v-model="loginDialog" :position="'top'">
+      <q-card class="q-my-lg justify-center">
+        <q-card-section class="row items-center">
+          <div class="text-h6 q-mx-md">Acesse sua conta</div>
+          <q-space />
+          <q-btn icon="close" flat round dense v-close-popup />
+        </q-card-section>
+
+        <q-card-section>
+          <q-form v-on:submit="submitLogin" class="items-center">
+            <q-input
+              square
+              filled
+              v-model="userLogin.email"
+              label="Seu email"
+              type="email"
+              required
+              class="q-my-md"
+            />
+
+            <q-input
+              square
+              filled
+              type="password"
+              v-model="userLogin.password"
+              label="Sua senha"
+              lazy-rules
+              required
+              class="q-my-md"
+            />
+
+            <q-btn label="Entrar" type="submit" color="deep-purple-13" class="full-width" to="/home" />
+            <!--botão submit-->
+          </q-form>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+    <!--conteudo da página-->
+    <q-page-container>
+      <div class="row content-center bg-grey-2">
+        <div class="col-8"></div>
+        <div class="col-4 justify-right">
+          <q-form @submit="submitRegister" class="q-mb-md">
+            <div class="row">
+              <div class="col-6">
+                <q-input
+                  square
+                  filled
+                  v-model="userRegister.name"
+                  label="Nome"
+                  required
+                  class="q-ma-md"
+                />
+              </div>
+              <div class="col-6">
+                <q-input
+                  square
+                  filled
+                  v-model="userRegister.lastname"
+                  label="Sobrenome"
+                  required
+                  class="q-ma-md"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <q-input
+                  square
+                  filled
+                  v-model="userRegister.registration"
+                  label="Matrícula"
+                  required
+                  class="q-ma-md"
+                />
+              </div>
+              <div class="col-6">
+                <q-input
+                  square
+                  filled
+                  v-model="userRegister.course"
+                  label="Curso"
+                  required
+                  class="q-ma-md"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <q-input
+                square
+                filled
+                v-model="userRegister.username"
+                label="E-mail"
+                required
+                class="q-ma-md col"
+              />
+            </div>
+            <div class="row">
+              <q-input
+                square
+                filled
+                v-model="userRegister.password"
+                label="Senha"
+                type="password"
+                required
+                class="q-ma-md col"
+              />
+            </div>
+            <div class="row q-px-md">
+              <q-btn
+                label="Cadastrar"
+                type="submit"
+                color="deep-purple-13"
+                class="full-width"
+              />
+            </div>
+          </q-form>
+        </div>
+      </div>
+    </q-page-container>
+  </q-layout>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      loginDialog: false,
+      userLogin: {
+        email: null,
+        password: null
+      },
+      userRegister: {
+        name: null,
+        lastname: null,
+        registration: null,
+        course: null,
+        username: null,
+        password: null
+      }
+    };
+  },
+  methods: {
+    submitLogin() {
+      this.axios
+        .post("http://172.16.26.235:3000/login", this.userLogin)
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    submitRegister() {
+      this.axios
+        .post("http://172.16.26.235:3000/register", this.userRegister)
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
+  }
+};
+</script>
