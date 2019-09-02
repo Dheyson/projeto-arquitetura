@@ -1,21 +1,23 @@
-import store from '../store'
+import { TokenService } from '../services/storage.service'
+// import store from '../store'
 
-export default async (to, from, next) => {
+export default async(to, from, next) => {
   document.title = `${to.name} - Resumidos`
 
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.getters['auth/hasToken']) {
-      try {
-        await store.dispatch('auth/ActionCheckToken')
+  const isPublic = to.matched.some(record => record.meta.public)
+  const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut)
+  const loggedIn = !!TokenService.getToken
 
-        next()
-      } catch (err) {
-        next({ name: 'main' })
-      }
-    } else {
-      next()
-    }
-  } else {
-    next()
+  if (!isPublic && !loggedIn) {
+    return next({
+      path: '/login',
+      query: { redirect: to.fullPath }
+    })
   }
+
+  if (loggedIn && onlyWhenLoggedOut) {
+    return next('/')
+  }
+  next()
 }
+
