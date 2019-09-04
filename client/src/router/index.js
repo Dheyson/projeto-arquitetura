@@ -6,29 +6,28 @@ import beforeEach from './beforeEach'
 
 Vue.use(Router);
 
-export default new Router({
-  // mode:history,
+const router = new Router({
+  mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
+      name: 'main',
       path: "/",
       component: Main
     },
     {
-      path:"/login",
-      name: 'login',
-     // component: Login, 
+      name: 'home',
+      path: "/home",
+      component: Home,
       meta: {
         public: true,
         onlyWhenimportLoggedOut: true
       }
     },
-    {
-      path: "/home",
-      component: Home
-    },
     { path: "*", redirect: { name: "home" } }
   ]
 });
 
-Router.beforeEach(beforeEach)
+router.beforeEach(beforeEach)
+
+export default router

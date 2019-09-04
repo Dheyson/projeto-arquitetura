@@ -10,7 +10,7 @@ export default async(to, from, next) => {
 
   if (!isPublic && !loggedIn) {
     return next({
-      path: '/login',
+      path: '/home',
       query: { redirect: to.fullPath }
     })
   }
