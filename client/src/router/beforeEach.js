@@ -5,12 +5,12 @@ export default async(to, from, next) => {
   document.title = `${to.name} - Resumidos`
 
   const isPublic = to.matched.some(record => record.meta.public)
-  const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut)
+  const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenimportLoggedOut)
   const loggedIn = !!TokenService.getToken
 
-  if (!isPublic && !loggedIn) {
+  if (!isPublic && !loggedIn) { // Checa se a rota que requer auth, esta logada, se nao, redireciona para /main
     return next({
-      path: '/home',
+      path: '/main',
       query: { redirect: to.fullPath }
     })
   }
