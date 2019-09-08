@@ -21,12 +21,12 @@ const router = new Router({ // Cada rota e chamada de record(route records)
       component: Main
     },
     {
-      name: 'user',
+      name: 'home',
       path: "/home", // /user/:id
       component: Home,
       meta: {
         public: true,
-        onlyWhenimportLoggedOut: true
+        onlyWhenLoggedOut: true
       },
       children: [
         { path: '', component: UserHome },
