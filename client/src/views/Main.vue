@@ -2,13 +2,13 @@
   <q-layout view="lHh Lpr lFf">
     <q-header>
       <!--menu superior-->
-      <q-toolbar class = "bg-teal-13 text-white">
-        <q-btn flat label = "Resumidos" />
+      <q-toolbar class="bg-teal-13 text-white">
+        <q-btn flat label="Resumidos" />
         <q-space />
         <q-btn
           flat
-          class = "bg-deep-purple-13 text-white q-mx-sm"
-          label = "Acesse sua conta"
+          class="bg-deep-purple-13 text-white q-mx-sm"
+          label="Acesse sua conta"
           v-on:click="loginDialog = true"
         />
       </q-toolbar>
@@ -25,6 +25,12 @@
 
         <q-card-section>
           <q-form v-on:submit="submitLogin" class="items-center">
+            <p v-if="errors.length">
+    <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
+    <ul>
+      <li v-for="error in errors" :key="error">{{ error }}</li>
+    </ul>
+  </p>
             <q-input
               square
               filled
@@ -46,7 +52,13 @@
               class="q-my-md"
             />
 
-            <q-btn label="Entrar" type="submit" color="deep-purple-13" class="full-width" to="/home" />
+            <q-btn
+              label="Entrar"
+              type="submit"
+              color="deep-purple-13"
+              class="full-width"
+              to="/home"
+            />
             <!--botão submit-->
           </q-form>
         </q-card-section>
@@ -124,12 +136,7 @@
               />
             </div>
             <div class="row q-px-md">
-              <q-btn
-                label="Cadastrar"
-                type="submit"
-                color="deep-purple-13"
-                class="full-width"
-              />
+              <q-btn label="Cadastrar" type="submit" color="deep-purple-13" class="full-width" />
             </div>
           </q-form>
         </div>
@@ -143,6 +150,7 @@
 export default {
   data() {
     return {
+      errors: [],
       loginDialog: false,
       userLogin: {
         email: null,
@@ -159,7 +167,11 @@ export default {
     };
   },
   methods: {
-    submitLogin() {
+    submitLogin(e) {
+      if (!this.userLogin.email) {
+        this.errors.push('Email e obrigatorio')
+      }
+
       this.axios
         .post("http://172.16.26.235:3000/login", this.userLogin)
         .then(function(response) {

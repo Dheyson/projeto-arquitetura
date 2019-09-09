@@ -18,11 +18,6 @@ app.listen(port, () => {
 
 app.set('json spaces', 2)
 app.use(bodyParser.json())
-app.use(async (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header("Access-Control-Allow-Headers", "*")
-    next()
-})
 
 app.post('/login', (req, res) => {
     console.log('Server.login');
