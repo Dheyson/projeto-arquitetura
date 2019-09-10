@@ -2,19 +2,23 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken');
 const { verifyToken } = require('./verifyToken')
-//const userController = require('../controllers/UserController.js')
+const config = require('./config');
 const cors = require('cors')
 const app = express()
+//const userController = require('../controllers/UserController.js')
+
 app.use(cors())
 
 /////////
-let userTemp = {}
+let userTemp = {
+    id: 1,
+    name: req.body.name,
+    username: req.body.username,
+    password: req.body.password
+}
 /////////
 
-const port = 3000
-app.listen(port, () => {
-    console.log(`Listening port ${port}`)
-})
+
 
 app.set('json spaces', 2)
 app.use(bodyParser.json())
@@ -37,7 +41,7 @@ app.post('/login', (req, res) => {
     }
 
     const token = jwt.sign({ id: userTemp.id },
-        '123',
+        config.secret,
         { expiresIn: 86400 });
 
     return res.status(200).json({
@@ -51,12 +55,7 @@ app.post('/register', (req, res) => {
     console.log(req.body)
 
     // implementar codigo de save...
-    userTemp = {
-        id: 1,
-        name: req.body.name,
-        username: req.body.username,
-        password: req.body.password
-    }
+   
 
     res.json({
         message: 'Register Successfull',
@@ -71,6 +70,11 @@ app.get('/load-session', verifyToken, (req, res) => {
         message: 'load-session sucessfull',
         user: userTemp
     })
+})
+
+const port = process.env.PORT || 3000
+app.listen(port, () => {
+    console.log(`Listening port ${port}`)
 })
 
 //app.post('/login', userController.login)
