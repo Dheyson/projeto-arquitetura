@@ -25,12 +25,6 @@
 
         <q-card-section>
           <q-form v-on:submit="submitLogin" class="items-center">
-            <p v-if="errors.length">
-    <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
-    <ul>
-      <li v-for="error in errors" :key="error">{{ error }}</li>
-    </ul>
-  </p>
             <q-input
               square
               filled
@@ -150,7 +144,6 @@
 export default {
   data() {
     return {
-      errors: [],
       loginDialog: false,
       userLogin: {
         email: null,
@@ -168,28 +161,32 @@ export default {
   },
   methods: {
     submitLogin(e) {
-      if (!this.userLogin.email) {
-        this.errors.push('Email e obrigatorio')
-      }
+      let email = this.userLogin.email
+      let password = this.userLogin.password
+      this.$store
+        .dispatch("login", {
+          email, password })
+        .then(() => 
+        this.$router.push("/"))
+        .catch(err => 
+        console.log(err))
 
-      this.axios
-        .post("http://172.16.26.235:3000/login", this.userLogin)
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    },
+        e.preventDefault()
+        }
+    ,
     submitRegister() {
-      this.axios
-        .post("http://172.16.26.235:3000/register", this.userRegister)
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+      let data = {
+        name: this.userRegister.name,
+        lastname: this.userRegister.lastname,
+        registration: this.userRegister.registration,
+        course: this.userRegister.course,
+        username: this.userRegister.username,
+        password: this.userRegister.password
+      }
+      this.$store
+        .dispatch("register", data)
+        .then(() => this.$router.push("/"))
+        .catch(err => console.log(err))
     }
   }
 };
