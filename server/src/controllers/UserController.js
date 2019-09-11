@@ -1,38 +1,68 @@
-const User = require('../models/User');
+const User = require('../models/User')
+const tokenService = require('../services/tokenService')
 
 function login(req, res) {
     console.log('UserController.login')
 
     User.findOne({ username: req.body.username, password: req.body.password }, (err, body) => {
-        if (body != null) {
-            console.log(`User finded: ${body}`);
-            res.json({ message: 'User finded', user: body });
+        if (body == null) {
+            res.status(400).json({
+                error: true,
+                message: 'Unsuccessful login, because user was not found',
+                user: null
+            })
         } else {
-            console.log('User not finded');
-            res.json({ message: 'User not finded', user: null });
+            res.status(200).json({
+                error: false,
+                message: 'Successful login',
+                token: tokenService.generateToken(body.id),
+                user: body
+            })
         }
-    });
+    })
+
 }
 
 function register(req, res) {
     console.log('UserController.register')
 
-    const user = new User();
-    user.username = req.body.username;
-    user.password = req.body.password;
-    user.name = req.body.name;
+    User.findOne({ username: req.body.username }, (err, body) => {
 
-    user.save();
+        if (body == null) {
 
-    res.json({ message: 'User registred', user: user });
+            const user = new User()
+            user.username = req.body.username
+            user.password = req.body.password
+            user.name = req.body.name
+
+            user.save()
+
+            res.status(200).json({
+                error: false,
+                message: 'User registred',
+                user: user
+            })
+        } else {
+            res.status(400).json({
+                error: true,
+                message: 'User already exists',
+                user: null
+            })
+        }
+    })
 }
 
 function loadSession(req, res) {
     console.log('UserController.loadSession')
 
-    User.findById(req.query.id, (err, body) => {
-        res.json({ user: body });
-    });
+    User.findById(req.tokenId, (err, body) => {
+
+        if (body == null)
+            res.status(400).json({ error: true, message: 'User not found', user: null })
+        else
+            res.status(200).json({ error: false, message: 'User found successfully', user: body })
+
+    })
 
 }
 
