@@ -1,4 +1,4 @@
-const db = require('../repositories/Database')
+const db = require('../database/Database')
 
 const UserSchema = new db.mongoose.Schema({
     name: {
