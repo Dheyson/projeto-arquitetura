@@ -1,4 +1,4 @@
-![Logo of the project](./images/logo.sample.png)
+![Logo of the project](https://i.ibb.co/Xj30vnZ/Anota-o-2019-09-11-012555.png)
 
 # Resumidos: Arquitetura &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
 > vuejs, nodejs, javascript
@@ -42,7 +42,7 @@ O que é necessário para configurar o ambiente de desenvolvimento. Por exemplo,
 Aqui está uma breve introdução sobre o que um desenvolvedor deve fazer para começar a desenvolver
 o projeto ainda:
 
-```shell
+```shel
 git clone https://github.com/Dheyson/projeto-arquitetura.git
 cd your-project/
 npm install
