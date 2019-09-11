@@ -1,3 +1,4 @@
+const config = require('./config');
 const jwt = require('jsonwebtoken')
 
 module.exports = {
@@ -13,7 +14,7 @@ module.exports = {
             })
         }
 
-        jwt.verify(token, '123', (err, decoded) => {
+        jwt.verify(token, config.secret, (err, decoded) => {
             if (err) {
                 return res.status(400).json({
                     message: 'Falha na autenticação',
