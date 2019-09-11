@@ -4,7 +4,6 @@ const tokenService = require('../services/tokenService')
 const userController = require('../controllers/UserController.js')
 const cors = require('cors')
 const app = express()
-//const userController = require('../controllers/UserController.js')
 
 app.use(cors())
 app.use(bodyParser.json())

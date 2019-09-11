@@ -1,4 +1,3 @@
-const config = require('./config');
 const jwt = require('jsonwebtoken')
 
 const secret = 'zl2kPzKL78A67fnK4FN8FD8FdD9N8a8N9S76NTdf8s3SDFNz888SDNFnYa'
