@@ -1,21 +1,18 @@
-import store from '../store'
+// Global before hooks
+/* eslint-disable */
 
-export default async (to, from, next) => {
-  document.title = `${to.name} - Resumidos`
 
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.getters['auth/hasToken']) {
-      try {
-        await store.dispatch('auth/ActionCheckToken')
+// import store from '../store'
 
-        next()
-      } catch (err) {
-        next({ name: 'main' })
-      }
-    } else {
-      next()
-    }
-  } else {
-    next()
-  }
-}
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.requiresAuth)) {
+//     if (store.getters.isLoggedIn) {
+//       next()
+//       return
+//     }
+//     next('/login')
+//   } else {
+//     next()
+//   }
+// })
+

@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <span>bem-vindo</span>
-  </div>
+  <span>Foi mal, encontrei nao</span>
   <!-- {{ $route.params.username }} -->
 </template>
 
 <script>
+export default {
 
-export default {};
+}
 </script>
 
 <style>
+
 </style>
