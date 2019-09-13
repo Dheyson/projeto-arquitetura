@@ -1,10 +1,4 @@
-const mongoose = require("mongoose");
-
-/*
-mongoose.connect('mongodb+srv://admin:1234@cluster0-wtwy9.mongodb.net/test?retryWrites=true&w=majority',
-    { useNewUrlParser: true });
-*/
-
+const mongoose = require('mongoose');
 
 mongoose.connect("mongodb://localhost/resumidos", {
   useNewUrlParser: true,
