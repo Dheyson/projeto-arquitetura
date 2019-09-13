@@ -1,6 +1,7 @@
 /* eslint-disable */ 
 import Vue from "vue";
 import Main from "@/views/Main";
+import Erro from "@/views/404"
 import Home from "@/views/Home";
 import Router from "vue-router";
 import store from '../store/index'
@@ -47,7 +48,7 @@ const router = new Router({ // Cada rota e chamada de record(route records)
       //   { path: 'posts', component: UserPosts }
       // ]
     },
-    { path: "*", redirect: { name: "404" } }
+    // { path: "*", redirect: { name: "404", component: Erro } }
   ]
 });
 
