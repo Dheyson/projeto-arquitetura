@@ -14,6 +14,12 @@ app.listen(port, () => {
     console.log(`Listening port ${port}`)
 })
 
+app.use(async (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "*")
+    next()
+})
+
 app.set('json spaces', 2)
 
 app.post('/login', userController.login)
