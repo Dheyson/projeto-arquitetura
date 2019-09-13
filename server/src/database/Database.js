@@ -6,22 +6,13 @@ mongoose.connect('mongodb+srv://admin:1234@cluster0-wtwy9.mongodb.net/test?retry
 */
 
 
-mongoose
-  .connect("mongodb://192.168.0.99/resumidos", {
-    useNewUrlParser: true,
-    useFindAndModify: true,
-    useCreateIndex: true
-  })
-  .then(() => {
-    mongoose.connection.once("open", () =>
-      console.log("Successful Connection to MongoDB!")
-    );
-  })
-  .catch(err => {
-    mongoose.connection.on("error" + err);
-  });
+mongoose.connect("mongodb://localhost/resumidos", {
+  useNewUrlParser: true,
+  useFindAndModify: true,
+  useCreateIndex: true
+})
 
+mongoose.connection.on('error', console.error);
+mongoose.connection.once('open', () => console.log('Successful Connection to MongoDB!'));
 
-mongoose.Promise = global.Promise;
-
-module.exports = { mongoose } 
+module.exports = { mongoose }
