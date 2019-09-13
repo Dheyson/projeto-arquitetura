@@ -1,15 +1,13 @@
-const db = require('../database/Database')
+const db = require("../database/Database");
 
 const UserSchema = new db.mongoose.Schema({
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  username: String,
+  password: String,
+  name: String
+});
 
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    username: String,
-    password: String,
-    name: String
-
-})
-
-module.exports = db.mongoose.model('User', UserSchema) 
+module.exports = db.mongoose.model("User", UserSchema);
