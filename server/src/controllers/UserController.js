@@ -33,7 +33,8 @@ function register(req, res) {
             const user = new User()
             user.username = req.body.username
             user.password = req.body.password
-            user.name = req.body.name
+            user.firstName = req.body.firstName
+            user.lastName = req.body.lastName
 
             user.save()
 
