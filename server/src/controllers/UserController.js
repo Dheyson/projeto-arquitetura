@@ -18,13 +18,13 @@ function login(req, res) {
                 token: tokenService.generateToken(body.id),
                 user: body
             })
+            console.log(err)
         }
     })
 
 }
 
 function register(req, res) {
-    console.log('UserController.register')
 
     User.findOne({ username: req.body.username }, (err, body) => {
 
@@ -48,6 +48,7 @@ function register(req, res) {
                 message: 'User already exists',
                 user: null
             })
+            console.log(err)
         }
     })
 }

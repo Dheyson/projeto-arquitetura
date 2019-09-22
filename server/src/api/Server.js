@@ -14,6 +14,8 @@ app.use(cors());
 
 const port = process.env.PORT || 3000;
 
+// app.use(bodyParser());
+
 app.set("json spaces", 2);
 
 app.post("/login", userController.login);
