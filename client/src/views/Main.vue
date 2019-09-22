@@ -24,11 +24,11 @@
         </q-card-section>
 
         <q-card-section>
-          <q-form v-on:submit="submitLogin" class="items-center">
+          <q-form @submit="submitLogin" class="items-center">
             <q-input
               square
               filled
-              v-model="userLogin.email"
+              v-model="userLogin.username"
               label="Seu email"
               type="email"
               required
@@ -46,13 +46,7 @@
               class="q-my-md"
             />
 
-            <q-btn
-              label="Entrar"
-              type="submit"
-              color="deep-purple-13"
-              class="full-width"
-              to="/home"
-            />
+            <q-btn label="Entrar" type="submit" color="deep-purple-13" class="full-width" />
             <!--botão submit-->
           </q-form>
         </q-card-section>
@@ -146,7 +140,7 @@ export default {
     return {
       loginDialog: false,
       userLogin: {
-        email: null,
+        username: null,
         password: null
       },
       userRegister: {
@@ -160,20 +154,15 @@ export default {
     };
   },
   methods: {
-    submitLogin(e) {
-      let email = this.userLogin.email
-      let password = this.userLogin.password
+    submitLogin() {
       this.$store
         .dispatch("login", {
-          email, password })
-        .then(() => 
-        this.$router.push("/"))
-        .catch(err => 
-        console.log(err))
-
-        e.preventDefault()
-        }
-    ,
+          username: this.userLogin.username,
+          password: this.userLogin.password
+        })
+        .then(() => this.$router.push("/"))
+        .catch(err => console.log(err));
+    },
     submitRegister() {
       let data = {
         name: this.userRegister.name,
@@ -182,11 +171,11 @@ export default {
         course: this.userRegister.course,
         username: this.userRegister.username,
         password: this.userRegister.password
-      }
+      };
       this.$store
         .dispatch("register", data)
         .then(() => this.$router.push("/"))
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
     }
   }
 };

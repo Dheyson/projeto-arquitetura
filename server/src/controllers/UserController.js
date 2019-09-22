@@ -7,13 +7,13 @@ function login(req, res) {
     User.findOne({ username: req.body.username, password: req.body.password }, (err, body) => {
         if (body == null) {
             res.status(400).json({
-                error: true,
+                success: false,
                 message: 'Unsuccessful login, because user was not found',
                 user: null
             })
         } else {
             res.status(200).json({
-                error: false,
+                success: true,
                 message: 'Successful login',
                 token: tokenService.generateToken(body.id),
                 user: body
@@ -39,13 +39,13 @@ function register(req, res) {
             user.save()
 
             res.status(200).json({
-                error: false,
+                success: true,
                 message: 'User registred',
                 user: user
             })
         } else {
             res.status(400).json({
-                error: true,
+                success: false,
                 message: 'User already exists',
                 user: null
             })
@@ -59,9 +59,9 @@ function loadSession(req, res) {
     User.findById(req.tokenId, (err, body) => {
 
         if (body == null)
-            res.status(400).json({ error: true, message: 'User not found', user: null })
+            res.status(400).json({ success: false, message: 'User not found', user: null })
         else
-            res.status(200).json({ error: false, message: 'User found successfully', user: body })
+            res.status(200).json({ success: true, message: 'User found successfully', user: body })
 
     })
 
