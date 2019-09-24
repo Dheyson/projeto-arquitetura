@@ -4,12 +4,10 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import './registerServiceWorker'
+//import './registerServiceWorker'
 import './quasar'
 
-Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
-// Vue.prototype.$http  =  axios;
 // const  accessToken  =  localStorage.getItem('access_token')
 
 // if (accessToken) {
