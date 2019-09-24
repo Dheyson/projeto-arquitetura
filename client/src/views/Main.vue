@@ -28,7 +28,7 @@
             <q-input
               square
               filled
-              v-model="userLogin.email"
+              v-model="userLogin.username"
               label="Seu email"
               type="email"
               required
@@ -146,7 +146,7 @@ export default {
     return {
       loginDialog: false,
       userLogin: {
-        email: null,
+        username: null,
         password: null
       },
       userRegister: {
@@ -161,11 +161,11 @@ export default {
   },
   methods: {
     submitLogin(e) {
-      let email = this.userLogin.email
+      let username= this.userLogin.username
       let password = this.userLogin.password
       this.$store
         .dispatch("login", {
-          email, password })
+          username, password })
         .then(() => 
         this.$router.push("/"))
         .catch(err => 
