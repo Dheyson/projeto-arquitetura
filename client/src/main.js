@@ -9,8 +9,8 @@ import "./registerServiceWorker";
 import "./quasar";
 
 Vue.config.productionTip = false;
- Vue.use(VueAxios, axios);
- 
+Vue.use(VueAxios, axios);
+Vue.use(Router)
 const accessToken = localStorage.getItem("access_token");
 
 if (accessToken) {
