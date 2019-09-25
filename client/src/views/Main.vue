@@ -9,7 +9,7 @@
           flat
           class="bg-deep-purple-13 text-white q-mx-sm"
           label="Acesse sua conta"
-          v-on:click="loginDialog = true"
+          @click="loginDialog = true"
         />
       </q-toolbar>
     </q-header>
@@ -153,18 +153,21 @@ export default {
       }
     };
   },
+
   methods: {
     submitLogin() {
+      const loginRequest = {
+        username: this.userLogin.username,
+        password: this.userLogin.password
+      };
+
       this.$store
-        .dispatch("login", {
-          username: this.userLogin.username,
-          password: this.userLogin.password
-        })
+        .dispatch("login", loginRequest)
         .then(() => this.$router.push("/home"))
-        .catch(err => console.log(err));
+        .catch(err => console.log(err.message));
     },
     submitRegister() {
-      let data = {
+      const registerRequest = {
         name: this.userRegister.name,
         lastname: this.userRegister.lastname,
         registration: this.userRegister.registration,
@@ -172,10 +175,11 @@ export default {
         username: this.userRegister.username,
         password: this.userRegister.password
       };
+
       this.$store
-        .dispatch("register", data)
+        .dispatch("register", registerRequest)
         .then(() => this.$router.push("/"))
-        .catch(err => console.log(err));
+        .catch(err => console.log(err.message));
     }
   }
 };

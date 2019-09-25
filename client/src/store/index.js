@@ -29,11 +29,11 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    login({ commit }, user) {
+    login({ commit }, loginRequest) {
       return new Promise((resolve, reject) => {
         commit("auth_request");
         axios
-          .post("http://localhost:3000/login", user)
+          .post("http://localhost:3000/login", loginRequest)
           .then(res => {
             const token = res.data.token;
             const user = res.data.user;
@@ -42,45 +42,61 @@ export default new Vuex.Store({
 
             // Add the following line:
             axios.defaults.headers.common["Authorization"] = token;
+
+            alert(res.data.message)
+
             commit("auth_success", token, user);
             resolve(res);
           })
           .catch(err => {
-            commit("auth_error");
             localStorage.removeItem("token");
+
+            alert(err.message)
+
+            commit("auth_error");
             reject(err);
           });
       });
     },
-    register({ commit }, user) {
+    register({ commit }, registerRequest) {
       return new Promise((resolve, reject) => {
         commit("auth_request");
-        axios({
-          url: "http://localhost:3000/register",
-          data: user,
-          method: "POST"
-        })
-          .then(resp => {
-            const token = resp.data.token;
-            const user = resp.data.user;
+
+        const url = "http://localhost:3000/register";
+        axios
+          .post(url, registerRequest)
+          .then(res => {
+            const token = res.data.token;
+            const user = res.data.user;
+
             localStorage.setItem("token", token);
+
             // Add the following line:
             axios.defaults.headers.common["Authorization"] = token;
+
+            alert(res.data.message)
+
             commit("auth_success", token, user);
-            resolve(resp);
+            resolve(res);
           })
           .catch(err => {
-            commit("auth_error", err);
             localStorage.removeItem("token");
+
+            alert(err.message)
+
+            commit("auth_error", err);
             reject(err);
           });
       });
     },
+
     logout({ commit }) {
       return new Promise((resolve, reject) => {
         commit("logout");
+
         localStorage.removeItem("token");
         delete axios.defaults.headers.common["Authorization"];
+
         resolve();
       });
     }
