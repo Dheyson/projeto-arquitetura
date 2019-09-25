@@ -1,11 +1,11 @@
 <template>
   <div>
     <q-header>
-      <q-toolbar style="height:150px">
-        <q-btn dense flat round icon="menu" @click="left = !left" />
+      <q-toolbar>
+        <q-btn v-if="$q.screen.lt.sm" dense flat round icon="menu" @click="left = !left" />
 
-        <q-toolbar-title>
-          <div class="text-h2">Logo</div>
+        <q-toolbar-title class="text-h3 q-py-md">
+          logo
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -13,18 +13,17 @@
     <q-drawer v-model="left" show-if-above :width="200" :breakpoint="500" content-class="bg-grey-3">
       <q-scroll-area class="fit">
         <q-list padding class="menu-list">
-          <q-btn
-            color="secondary"
-            label="PUBLICAR"
-            icon="create"
-            class="full-width q-ma-md"
-            size="lg"
-            @click="sendPost = true"
-          />
+
+          <q-item clickable v-ripple class="bg-secondary text-white q-mb-md" @click="sendPost = true">
+            <q-item-section avatar>
+              <q-icon name="create" />
+            </q-item-section>
+            <q-item-section>PUBLICAR</q-item-section>
+          </q-item>
 
           <q-item clickable v-ripple>
             <q-item-section avatar>
-              <q-icon name="local_library" />
+              <q-icon name="fas fa-book" />
             </q-item-section>
 
             <q-item-section>Resumos</q-item-section>
