@@ -43,15 +43,11 @@ export default new Vuex.Store({
             // Add the following line:
             axios.defaults.headers.common["Authorization"] = token;
 
-            alert(res.data.message)
-
             commit("auth_success", token, user);
             resolve(res);
           })
           .catch(err => {
             localStorage.removeItem("token");
-
-            alert(err.message)
 
             commit("auth_error");
             reject(err);
@@ -74,15 +70,11 @@ export default new Vuex.Store({
             // Add the following line:
             axios.defaults.headers.common["Authorization"] = token;
 
-            alert(res.data.message)
-
             commit("auth_success", token, user);
             resolve(res);
           })
           .catch(err => {
             localStorage.removeItem("token");
-
-            alert(err.message)
 
             commit("auth_error", err);
             reject(err);
