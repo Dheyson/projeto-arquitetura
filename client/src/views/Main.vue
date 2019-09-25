@@ -2,12 +2,12 @@
   <q-layout>
     <q-header>
       <!--menu superior-->
-      <q-toolbar class="bg-teal-13 text-white">
+      <q-toolbar class="bg-primary text-white">
         <q-btn flat label="Resumidos" />
         <q-space />
         <q-btn
           flat
-          class="bg-deep-purple-13 text-white q-mx-sm"
+          class="bg-secondary text-white q-mx-sm"
           label="Acesse sua conta"
           v-on:click="loginDialog = true"
         />
@@ -33,6 +33,7 @@
               type="email"
               required
               class="q-my-md"
+              color="secondary"
             />
 
             <q-input
@@ -44,9 +45,10 @@
               lazy-rules
               required
               class="q-my-md"
+              color="secondary"
             />
 
-            <q-btn label="Entrar" type="submit" color="deep-purple-13" class="full-width" />
+            <q-btn label="Entrar" type="submit" color="secondary" class="full-width" />
             <!--botão submit-->
           </q-form>
         </q-card-section>
@@ -54,65 +56,68 @@
     </q-dialog>
     <!--conteudo da página-->
     <q-page-container>
-      <div class="row content-center bg-grey-2">
+      <div class="row content-center bg-grey-2 q-py-md">
         <div class="col-8"></div>
         <div class="col-4 justify-right">
           <q-form @submit="submitRegister" class="q-mb-md">
-            <div class="row">
-              <div class="col-6">
+            <div class="row q-mb-md">
+              <div class="col-6 q-pr-sm">
                 <q-input
                   square
                   filled
                   v-model="userRegister.name"
                   label="Nome"
                   required
-                  class="q-ma-md"
+                  color="secondary"
                 />
               </div>
-              <div class="col-6">
+              <div class="col-6 q-pl-sm">
                 <q-input
                   square
                   filled
                   v-model="userRegister.lastname"
                   label="Sobrenome"
                   required
-                  class="q-ma-md"
+
+                  color="secondary"
                 />
               </div>
             </div>
-            <div class="row">
-              <div class="col-6">
+            <div class="row q-mb-md">
+              <div class="col-6 q-pr-sm">
                 <q-input
                   square
                   filled
                   v-model="userRegister.registration"
                   label="Matrícula"
                   required
-                  class="q-ma-md"
+
+                  color="secondary"
                 />
               </div>
-              <div class="col-6">
+              <div class="col-6 q-pl-sm">
                 <q-input
                   square
                   filled
                   v-model="userRegister.course"
                   label="Curso"
                   required
-                  class="q-ma-md"
+                  color="secondary"
                 />
               </div>
             </div>
-            <div class="row">
+            <div class="row q-mb-md">
               <q-input
                 square
                 filled
                 v-model="userRegister.username"
                 label="E-mail"
                 required
-                class="q-ma-md col"
+                class="col"
+                color="secondary"
               />
             </div>
-            <div class="row">
+            <div class="row q-mb-md">
               <q-input
                 square
                 filled
@@ -120,11 +125,12 @@
                 label="Senha"
                 type="password"
                 required
-                class="q-ma-md col"
+                class="col"
+                color="secondary"
               />
             </div>
-            <div class="row q-px-md">
-              <q-btn label="Cadastrar" type="submit" color="deep-purple-13" class="full-width" />
+            <div class="row">
+              <q-btn label="Cadastrar" type="submit" color="secondary" class="full-width" />
             </div>
           </q-form>
         </div>
