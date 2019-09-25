@@ -7,22 +7,46 @@
     </q-card-section>
 
     <q-card-section>
-      <q-form>
-        <q-input filled label="Título" class="q-my-md" color="secondary" />
-        <q-select filled label="Disciplina" class="q-my-md" color="secondary" />
-        <q-select filled label="Assunto" class="q-my-md" color="secondary" />
-        <div class="row q-my-md items-center">
-            <div class="col-1 q-mr-md">
-        <q-btn round color="secondary" icon="add_photo_alternate" class="q-mx-md"/>
-            </div>
-            <div class="col">
-        <q-input filled label="Descrição"/>
-            </div>
+      <q-form @submit.prevent="submitPost">
+        <q-input filled label="Título" class="q-mb-md" color="secondary" v-model="form.title" />
+        <q-input
+          filled
+          label="Descrição"
+          type="textarea"
+          color="secondary"
+          class="q-mb-md"
+          v-model="form.description"
+        />
+        <div class="row q-mb-md">
+          <q-select
+            filled
+            label="Disciplina"
+            class="q-pr-sm col-6"
+            color="secondary"
+            :options="disciplines"
+            v-model="form.discipline"
+          />
+          <q-select
+            filled
+            label="Assunto"
+            class="q-pl-sm col-6"
+            color="secondary"
+            :options="topics"
+            v-model="form.topic"
+          />
         </div>
+        <q-input
+          @input="val => { form.pic = val[0] }"
+          filled
+          type="file"
+          hint="Envie seu resumo"
+          class="q-mb-md"
+          color="secondary"
+        />
         <div class="row">
-        <q-btn flat label="Cancelar" />
-        <q-space />
-        <q-btn label="Publicar" color="secondary" type="submit"/>
+          <q-space />
+          <q-btn flat label="Cancelar" class="q-mx-md" v-close-popup />
+          <q-btn label="Publicar" color="secondary" type="submit" class="q-mx-md" />
         </div>
       </q-form>
     </q-card-section>
@@ -30,7 +54,26 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      form: {
+        pic: "",
+        title: "",
+        discipline: "",
+        topic: "",
+        description: ""
+      },
+      disciplines: ["...", "...", "..."],
+      topics: ["...", "...", "..."]
+    };
+  },
+  methods: {
+    submitPost() {
+      alert("funfou");
+    }
+  }
+};
 </script>
 
 <style>

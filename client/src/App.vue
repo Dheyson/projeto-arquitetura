@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <q-layout view="hHh lpR lFr">
-      <!-- <Navigation /> --> <!-- v-if no token da autenticação -->
+       <Navigation /> <!-- v-if no token da autenticação -->
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -28,3 +28,4 @@
         Navigation
       }
     };
+    </script>

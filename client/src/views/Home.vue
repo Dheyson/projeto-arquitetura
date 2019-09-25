@@ -1,13 +1,25 @@
 <template>
   <div>
-    <span>bem-vindo</span>
+    <q-list>
+      <q-item>
+        <q-item-section>{{title}}</q-item-section>
+        <q-item-section>{{pic}}</q-item-section>
+        <q-item-section>{{description}}</q-item-section>
+      </q-item>
+    </q-list>
   </div>
-  <!-- {{ $route.params.username }} -->
 </template>
 
 <script>
-
-export default {};
+export default {
+  data() {
+    return {
+      title: 'a',
+      pic: 'a',
+      description: 'a'
+    };
+  }
+};
 </script>
 
 <style>
