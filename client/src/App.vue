@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import Storage from './services/serviceStorage'
  import Navigation from "./components/default/Navigation"
  export default {
   computed: {
@@ -27,7 +26,6 @@ import Storage from './services/serviceStorage'
   },
   components:{
     Navigation: Navigation,
-    storage
   }
 };  
 </script>
