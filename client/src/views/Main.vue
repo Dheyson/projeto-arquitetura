@@ -24,7 +24,7 @@
         </q-card-section>
 
         <q-card-section>
-          <q-form v-on:submit="submitLogin" class="items-center">
+          <q-form @submit="submitLogin" class="items-center">
             <q-input
               square
               filled
@@ -46,13 +46,7 @@
               class="q-my-md"
             />
 
-            <q-btn
-              label="Entrar"
-              type="submit"
-              color="deep-purple-13"
-              class="full-width"
-              to="/home"
-            />
+            <q-btn label="Entrar" type="submit" color="deep-purple-13" class="full-width" />
             <!--botão submit-->
           </q-form>
         </q-card-section>
@@ -160,33 +154,28 @@ export default {
     };
   },
   methods: {
-    submitLogin(e) {
-      let username= this.userLogin.username
-      let password = this.userLogin.password
-      this.$store
-        .dispatch("login", {
-          username, password })
-        .then(() => 
-        this.$router.push("/"))
-        .catch(err => 
-        console.log(err))
+    submitLogin() {
+      const loginRequest = {
+        username: this.userLogin.username,
+        password: this.userLogin.password
+      };
 
-        e.preventDefault()
-        }
-    ,
+      this.$store
+        .dispatch("login", loginRequest)
+        .then(() => this.$router.push("/home"));
+    },
     submitRegister() {
-      let data = {
+      const registerRequest = {
         name: this.userRegister.name,
         lastname: this.userRegister.lastname,
         registration: this.userRegister.registration,
         course: this.userRegister.course,
         username: this.userRegister.username,
         password: this.userRegister.password
-      }
+      };
       this.$store
-        .dispatch("register", data)
-        .then(() => this.$router.push("/"))
-        .catch(err => console.log(err))
+        .dispatch("register", registerRequest)
+        .then(() => this.$router.push("/"));
     }
   }
 };

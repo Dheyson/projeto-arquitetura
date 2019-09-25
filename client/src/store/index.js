@@ -13,66 +13,90 @@ export default new Vuex.Store({
   },
   mutations: {
     auth_request(state) {
-      state.status = 'loading'
+      state.status = "loading";
     },
     auth_success(state, token, user) {
-      state.status = 'success'
-      state.token = token
-      state.user = user
+      state.status = "success";
+      state.token = token;
+      state.user = user;
     },
     auth_error(state) {
-      state.status = 'error'
+      state.status = "error";
     },
     logout(state) {
-      state.status = ''
-      state.token = ''
+      state.status = "";
+      state.token = "";
     }
   },
   actions: {
-    login({ commit }, user) {
+    login({ commit }, userRequest) {
       return new Promise((resolve, reject) => {
         commit("auth_request");
-        axios({
-          url: "http://localhost:3000/login",
-          data: user,
-          method: "POST"
-        })
-          .then(resp => {
-            const token = resp.data.token;
-            const user = resp.data.user;
+
+        const url = "http://localhost:3000/login";
+        axios
+          .post(url, userRequest)
+          .then(res => {
+            const token = res.data.token;
+            const user = res.data.user;
+
             localStorage.setItem("token", token);
+
             // Add the following line:
             axios.defaults.headers.common["Authorization"] = token;
+
+            // Success Msg
+            alert(res.data.message);
+            console.log(res.data.message);
+
             commit("auth_success", token, user);
-            resolve(resp);
+            resolve(res);
           })
           .catch(err => {
-            commit("auth_error");
             localStorage.removeItem("token");
+
+            // Failed Msg
+            alert(err.message);
+            console.log(err.message);
+
+            commit("auth_error");
             reject(err);
           });
       });
     },
-    register({ commit }, user) {
+    register({ commit }, registerRequest) {
       return new Promise((resolve, reject) => {
         commit("auth_request");
+
         axios({
           url: "http://localhost:3000/register",
-          data: user,
+          data: registerRequest,
           method: "POST"
         })
-          .then(resp => {
-            const token = resp.data.token;
-            const user = resp.data.user;
+          .then(res => {
+            const token = res.data.token;
+            const user = res.data.user;
+
             localStorage.setItem("token", token);
+
             // Add the following line:
             axios.defaults.headers.common["Authorization"] = token;
+
+            // Success Msg
+            alert(err.message);
+            console.log(err.message);
+
             commit("auth_success", token, user);
-            resolve(resp);
+            resolve(res);
           })
           .catch(err => {
-            commit("auth_error", err);
             localStorage.removeItem("token");
+
+            // Failed Msg
+            alert(err.message);
+            console.log(err.message);
+
+            commit("auth_error", err);
             reject(err);
           });
       });
@@ -82,12 +106,13 @@ export default new Vuex.Store({
         commit("logout");
         localStorage.removeItem("token");
         delete axios.defaults.headers.common["Authorization"];
+
         resolve();
       });
     }
   },
-  getters:{
+  getters: {
     isLoggedIn: state => !!state.token,
-    authStatus: state => state.status,
+    authStatus: state => state.status
   }
 });
