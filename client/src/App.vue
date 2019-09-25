@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <q-layout view="hHh lpR lFr">
-       <Navigation /> <!-- v-if no token da autenticação -->
-    <q-page-container>
+     <q-layout view="hHh lpR lFr">
+      <Navigation /> <!--isso aqui deve ser renderizado com v-if se tiver token-->
+    <q-page-container> 
       <router-view />
     </q-page-container>
-    </q-layout>
+    </q-layout> 
   </div>
 </template>
 
 <script>
-/* export default {
+import Storage from './services/serviceStorage'
+ import Navigation from "./components/default/Navigation"
+ export default {
   computed: {
     isLoggedIn: function() {
       return this.$store.getters.isLoggedIn;
@@ -22,6 +24,10 @@
         this.$router.push("/login");
       });
     }
+  },
+  components:{
+    Navigation: Navigation,
+    storage
   }
-}; */
+};  
 </script>
