@@ -27,8 +27,4 @@ new Vue({
   router,
   store,
   render: h => h(App)
-<<<<<<< HEAD
 }).$mount("#app");
-=======
-}).$mount("#app");
->>>>>>> 5d78637774f65342695f978338dd6cd4df6bf7b8
