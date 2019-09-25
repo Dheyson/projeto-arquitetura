@@ -160,7 +160,7 @@ export default {
           username: this.userLogin.username,
           password: this.userLogin.password
         })
-        .then(() => this.$router.push("/"))
+        .then(() => this.$router.push("/home"))
         .catch(err => console.log(err));
     },
     submitRegister() {

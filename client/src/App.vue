@@ -10,22 +10,18 @@
 </template>
 
 <script>
-  import Navigation from "./components/default/Navigation";
-    export default {
-      computed: {
-        isLoggedIn: function() {
-          return this.$store.getters.isLoggedIn;
-        }
-      },
-      methods: {
-        logout: function() {
-          this.$store.dispatch("logout").then(() => {
-            this.$router.push("/login");
-          });
-        }
-      },
-      components:{
-        Navigation
-      }
-    };
-    </script>
+/* export default {
+  computed: {
+    isLoggedIn: function() {
+      return this.$store.getters.isLoggedIn;
+    }
+  },
+  methods: {
+    logout: function() {
+      this.$store.dispatch("logout").then(() => {
+        this.$router.push("/login");
+      });
+    }
+  }
+}; */
+</script>
