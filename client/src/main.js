@@ -13,6 +13,9 @@ Vue.use(VueAxios, axios);
 Vue.use(Router);
 const accessToken = localStorage.getItem("access_token");
 
+// Configure default root path in axios
+axios.defaults.baseURL = 'http://localhost:3000'
+
 if (accessToken) {
   Vue.prototype.$http.defaults.headers.common["Authorization"] = accessToken;
 }

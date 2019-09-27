@@ -6,15 +6,12 @@ import axios from "axios";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
+  state: { user: {}, token: '' },
   status: {
     token: localStorage.getItem("token") || "",
     user: {}
   },
   mutations: {
-    auth_request(state) {
-      state.status = "loading";
-    },
     auth_success(state, token, user) {
       state.status = "success";
       state.token = token;
@@ -31,9 +28,8 @@ export default new Vuex.Store({
   actions: {
     login({ commit }, loginRequest) {
       return new Promise((resolve, reject) => {
-        commit("auth_request");
         axios
-          .post("http://localhost:3000/login", loginRequest)
+          .post("/login", loginRequest)
           .then(res => {
             const token = res.data.token;
             const user = res.data.user;
@@ -43,7 +39,7 @@ export default new Vuex.Store({
             // Add the following line:
             axios.defaults.headers.common["Authorization"] = token;
 
-            commit("auth_success", token, user);
+            commit("auth_success", user);
             resolve(res);
           })
           .catch(err => {
@@ -56,9 +52,8 @@ export default new Vuex.Store({
     },
     register({ commit }, registerRequest) {
       return new Promise((resolve, reject) => {
-        commit("auth_request");
 
-        const url = "http://localhost:3000/register";
+        const url = "/register";
         axios
           .post(url, registerRequest)
           .then(res => {
@@ -70,7 +65,7 @@ export default new Vuex.Store({
             // Add the following line:
             axios.defaults.headers.common["Authorization"] = token;
 
-            commit("auth_success", token, user);
+            commit("auth_success", user);
             resolve(res);
           })
           .catch(err => {

@@ -36,7 +36,7 @@
           />
         </div>
         <q-input
-          @input="val => { form.pic = val[0] }"
+          @input="val => { form.file = val[0] }"
           filled
           type="file"
           hint="Envie seu resumo"
@@ -58,7 +58,7 @@ export default {
   data() {
     return {
       form: {
-        pic: "",
+        file: "",
         title: "",
         discipline: "",
         topic: "",

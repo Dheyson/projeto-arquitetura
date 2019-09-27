@@ -1,10 +1,10 @@
 const User = require("../models/User");
 const tokenService = require("../services/tokenService");
 
-function login(req, res) {
+async function login(req, res) {
   console.log("UserController.login");
 
-  User.findOne(
+  await User.findOne(
     { username: req.body.username, password: req.body.password },
     (err, body) => {
       if (body == null) {
@@ -25,10 +25,10 @@ function login(req, res) {
   );
 }
 
-function register(req, res) {
+async function register(req, res) {
   console.log("UserController.register");
 
-  User.findOne({ username: req.body.username }, (err, body) => {
+  await User.findOne({ username: req.body.username }, (err, body) => {
     if (body == null) {
       const user = new User();
       user.username = req.body.username;
@@ -53,10 +53,10 @@ function register(req, res) {
   });
 }
 
-function loadSession(req, res) {
+async function loadSession(req, res) {
   console.log("UserController.loadSession");
 
-  User.findById(req.tokenId, (err, body) => {
+  await User.findById(req.tokenId, (err, body) => {
     if (body == null)
       res
         .status(400)
