@@ -14,9 +14,9 @@
 export default {
   data() {
     return {
-      title: 'a',
-      pic: 'a',
-      description: 'a'
+      title: '',
+      pic: '',
+      description: ''
     };
   }
 };

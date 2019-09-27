@@ -7,7 +7,7 @@
     </q-card-section>
 
     <q-card-section>
-      <q-form @submit.prevent="submitPost">
+      <q-form @submit.prevent="saveResume">
         <q-input filled label="Título" class="q-mb-md" color="secondary" v-model="form.title" />
         <q-input
           filled
@@ -69,8 +69,22 @@ export default {
     };
   },
   methods: {
-    submitPost() {
-      alert("funfou");
+    saveResume(){
+      this.convertTo64(this.form.file).then(data => {
+        this.form.file = data
+
+        this.$store
+        .dispatch("sendResume", this.form)
+      })
+    },
+
+    convertTo64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+      });
     }
   }
 };

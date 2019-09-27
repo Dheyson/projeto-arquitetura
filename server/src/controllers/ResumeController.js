@@ -12,6 +12,8 @@ async function save(req, res) {
     resume.userId = req.tokenId;
 
     resume.save();
+
+    res.status(200).json({success: true, message: "The Resume was saved successfully"})
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }

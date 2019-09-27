@@ -6,7 +6,7 @@ import axios from "axios";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: { user: {}, token: '' },
+  state: { user: {}, token: "" },
   status: {
     token: localStorage.getItem("token") || "",
     user: {}
@@ -52,7 +52,6 @@ export default new Vuex.Store({
     },
     register({ commit }, registerRequest) {
       return new Promise((resolve, reject) => {
-
         const url = "/register";
         axios
           .post(url, registerRequest)
@@ -72,6 +71,21 @@ export default new Vuex.Store({
             localStorage.removeItem("token");
 
             commit("auth_error", err);
+            reject(err);
+          });
+      });
+    },
+
+    sendResume({ commit }, resume) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post("/resume", resume)
+          .then(res => {
+            console.log(res.data);
+            resolve();
+          })
+          .catch(err => {
+            console.log(err.message);
             reject(err);
           });
       });
